@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="public/css/style.css">
+    <script src="public/js/jquery-3.3.1.min.js"></script>
+    <title>Accueil chat</title>
+</head>
+<body>
+
+<h1>Bienvenue sur le chat</h1>
+<!-- bloc recevant les 10 derniers messages -->
+    <div id="messages">
+    <?php 
+        foreach ($rows as $value) : ?>
+            
+            <p data-id= "<?= $value['id']; ?>"> <span><?= $value['auteur'];?> à dit :</span> <?= $value['message'];?> </p>
+            
+    <?php endforeach ?>
+    </div>
+    
+    <form action="application/ajaxPostMessage.php" method="POST">
+        <fieldset>
+            <legend>Envoi message</legend>
+            <p>
+                <label for="pseudo">Pseudo :</label>
+                <input type="text" id="auteur" name="auteur" placeholder="Entrez votre pseudo">
+            </p>
+            <p>
+            <label for="message">Message :</label>
+                <textarea id="message" name="message"></textarea>
+                <input type="submit" id="envoi" value="Envoyez votre message !">
+            </p>
+            
+            <!-- popup erreur en php si js désactivé -->
+            <p><?= $error ?></p>
+            <div class="error">
+                <p>Vous ne pouvez pas envoyer un message vide où sans pseudo...</p>
+            </div>
+        </fieldset>
+    </form>
+
+    
+
+    <!-- contient les requêtes ajax -->
+    <script src="public/js/ajax.js"></script>
+    <!-- contient les callback d'évènements -->
+    <script src="public/js/events.js"></script>
+    <!-- script principal -->
+    <script src="public/js/main.js"></script>
+</body>
+</html>
