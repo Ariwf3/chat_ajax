@@ -11,7 +11,7 @@ $rows = queryAll($sqlSelect);
 $error = null;
 
 // Si je reçois un param d'erreur j'affiche le popup(si javascript désactivé par l'utilisateur)
-if (isset($_GET['error'])) {
+if (isset($_GET['error']) && $_GET['error'] == 1) {
     $error = "<p style='color:red'>Vous ne pouvez pas envoyer un message vide où sans pseudo...</p>";
 }
 

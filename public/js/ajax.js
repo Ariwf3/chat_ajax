@@ -1,7 +1,7 @@
 
-/** @var {string} $message - Globale Contient le message */
+/** @var {string} $message - Globale va récupérer la valeur du message */
 let $message;
-/** @var {string} $auteur - Globale Contient le nom de l'auteur */
+/** @var {string} $auteur - Globale va récupérer la valeur de l'auteur */
 let $auteur;
 
 
@@ -28,7 +28,7 @@ const ariNamespaceAjax = {
     },
 
     /**
-     * Envoie des requêtes asynchrones ajax get avec pour paramètre le dernier id     inséré
+     * Envoie des requêtes asynchrones ajax get avec pour paramètre le dernier id inséré
      * @property {function} loadMessage - contient la fonction qui vérifiera le dernier message inséré toutes les 4 secondes
      */
     loadMessage: () => {
@@ -40,8 +40,8 @@ const ariNamespaceAjax = {
              * */
             let lastInsertId = $("p:first").data('id');
             $.getJSON("application/ajaxLoadMessage.php?id=" + lastInsertId,
-                ariNamespaceAjax.load
-            );
+                ariNamespaceAjax.displayMessage
+            ); 
             // fonction relancée dans le setTimeout pour répétition
             ariNamespaceAjax.loadMessage()
             //fonction relancée après 4 secondes
@@ -49,12 +49,12 @@ const ariNamespaceAjax = {
         
     },
     /**
-     * Fonction de callback ajax, permet d'afficher les derniers messages enregistrés grâce à la réponse du serveur
-     *@property {function} load - contient la fonction de qui servira de retour
+     * Fonction de callback ajax, permet d'afficher les derniers messages enregistrés, formate la réponse et l'ajoute au DOM
+     *@property {function} display - contient la fonction de qui servira de retour
      * @param {JSON} response - La données renvoyées par le serveur
      */
-    load: function (response) {
-    
+    displayMessage: function (response) {
+   console.log(response)
         if (response != "") {
         
             let message = "";
@@ -70,4 +70,4 @@ const ariNamespaceAjax = {
     }
     
 
-}
+} // fin namespace ariNamespaceAjax

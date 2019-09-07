@@ -5,6 +5,7 @@ require 'init.php';
 if (  !empty($_GET['id']))  {
 
     $lastInsertId = (int) $_GET['id'];
+    
     $sqlSelect = 'SELECT id, auteur, message FROM messages WHERE id > :id ORDER BY id DESC ';
     $array = ['id' => $lastInsertId];
 
@@ -15,7 +16,7 @@ if (  !empty($_GET['id']))  {
     
     // conversion en JSON en json pour faciliter le html
     $json = json_encode($row);
-
+    
     // Si le dernier message en base est plus récent je le renvoie au script pour l'afficher
      if ($lastSelectId > $lastInsertId ) {
         echo $json;

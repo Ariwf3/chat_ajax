@@ -10,7 +10,7 @@ const ariNamespaceEvents = {
      * Contient la fonction de callback pour l'envoi du message au click, vérifie les données utilisateur, affiche le message envoyé et déclenche la requête ajax
      * 
      * @property {function} sendMessageOnClick
-     * @param {event} e - représenté l'objet event
+     * @param {event} e - représente l'objet event
      */
     sendMessageOnClick :function (e) {
 
@@ -21,11 +21,10 @@ const ariNamespaceEvents = {
 
     //capture du message et auteur au clic avec protection des données utilisateur
     $message = encodeURIComponent($('#message').val().trim());
-    $auteur  = encodeURIComponent($('#auteur').val().trim());
+    $auteur  = encodeURIComponent($('#auteur').val().trim());   
 
-    
 
-    if ($message != "" && $auteur != "" ) {
+    if ($message != "" && $auteur != "") {
 
         //appel ajax
         ariNamespaceAjax.sendMessage();
@@ -36,14 +35,14 @@ const ariNamespaceEvents = {
         // on ajoute le message courant juste au dessus
         $('#messages').append("<p><span>" + decodeURIComponent($auteur) + " dit : </span>" + decodeURIComponent($message) + "</p>"); 
         
-    } else {
-        //pop up erreur
-        $error.fadeIn();
-        
+        } else {
+            //pop up erreur
+            $error.fadeIn();
+            
+        }
+    
     }
     
-}
-    
-}
+} // fin namespace ariNamespaceEvents
 
 

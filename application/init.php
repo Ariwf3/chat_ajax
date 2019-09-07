@@ -22,7 +22,7 @@ function prepareExecute($sqlQuery, array $array = array()) {
             }
     }
     
-    
+    global $pdo;
     $query = $pdo->prepare($sqlQuery);
     $query->execute($array);
 
@@ -36,7 +36,7 @@ function prepareExecute($sqlQuery, array $array = array()) {
 // requête fetchAll
 function queryAll( $sqlQuery, array $array = array() ) :array {
     
-        if ( !empty($array) )
+    if ( !empty($array) )
     {
         foreach( $array as $keys => $values )
             {
@@ -48,15 +48,13 @@ function queryAll( $sqlQuery, array $array = array() ) :array {
     $query = $pdo->prepare($sqlQuery);
     $query->execute($array);
 
-    
-        
-        return $query->fetchAll(PDO::FETCH_ASSOC);
-    }
+    return $query->fetchAll(PDO::FETCH_ASSOC);
+}
 	
 // requête fetch
 function queryOne( $sqlQuery, array $array = array() ) 
     {
-            if ( !empty($array) )
+        if ( !empty($array) )
         {
             foreach( $array as $keys => $values )
                 {
@@ -68,6 +66,5 @@ function queryOne( $sqlQuery, array $array = array() )
         $query = $pdo->prepare($sqlQuery);
         $query->execute($array);
 
-
-            return $query->fetch(PDO::FETCH_ASSOC);
+        return $query->fetch(PDO::FETCH_ASSOC);
     }
