@@ -15,9 +15,9 @@
 <!-- bloc recevant les 10 derniers messages -->
     <div id="messages">
     <?php 
-        foreach ($rows as $value) : ?>
+        foreach ($rows as $row) : ?>
             
-            <p data-id= "<?= $value['id']; ?>"> <span><?= $value['auteur'];?> à dit :</span> <?= $value['message'];?> </p>
+            <p data-id= "<?= $row['id']; ?>"> <span><?= $row['auteur'];?> à dit :</span> <?= $row['message'];?> </p>
             
     <?php endforeach ?>
     </div>
@@ -27,12 +27,12 @@
             <legend>Envoi message</legend>
             <p>
                 <label for="pseudo">Pseudo :</label>
-                <input type="text" id="auteur" name="auteur" placeholder="Entrez votre pseudo">
+                <input type="text" id="author" name="author" placeholder="Entrez votre pseudo">
             </p>
             <p>
             <label for="message">Message :</label>
                 <textarea id="message" name="message"></textarea>
-                <input type="submit" id="envoi" value="Envoyez votre message !">
+                <input type="submit" id="sendForm" value="Envoyez votre message !">
             </p>
             
             <!-- popup erreur en php si js désactivé -->

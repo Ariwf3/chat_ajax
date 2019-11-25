@@ -2,7 +2,7 @@
 /** @var {string} $message - Globale va récupérer la valeur du message */
 let $message;
 /** @var {string} $auteur - Globale va récupérer la valeur de l'auteur */
-let $auteur;
+let $author;
 
 
 /**
@@ -20,7 +20,7 @@ const ariNamespaceAjax = {
         $.post(
             "application/ajaxPostMessage.php",  
             {
-                auteur: $auteur,
+                author: $author,
                 message: $message
             }, 
             "html" 

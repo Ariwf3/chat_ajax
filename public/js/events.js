@@ -21,10 +21,10 @@ const ariNamespaceEvents = {
 
     //capture du message et auteur au clic avec protection des données utilisateur
     $message = encodeURIComponent($('#message').val().trim());
-    $auteur  = encodeURIComponent($('#auteur').val().trim());   
+    $author  = encodeURIComponent($('#author').val().trim());   
 
 
-    if ($message != "" && $auteur != "") {
+    if ($message != "" && $author != "") {
 
         //appel ajax
         ariNamespaceAjax.sendMessage();
@@ -33,7 +33,7 @@ const ariNamespaceEvents = {
         // on vide le champ textarea
         $("textarea").val('');
         // on ajoute le message courant juste au dessus
-        $('#messages').append("<p><span>" + decodeURIComponent($auteur) + " dit : </span>" + decodeURIComponent($message) + "</p>"); 
+        $('#messages').append("<p><span>" + decodeURIComponent($author) + " dit : </span>" + decodeURIComponent($message) + "</p>"); 
         
         } else {
             //pop up erreur

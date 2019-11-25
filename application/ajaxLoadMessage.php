@@ -9,17 +9,17 @@ if (  !empty($_GET['id']))  {
     $sqlSelect = 'SELECT id, auteur, message FROM messages WHERE id > :id ORDER BY id DESC ';
     $array = ['id' => $lastInsertId];
 
-    $row = queryAll($sqlSelect, $array);
+    $rows = queryAll($sqlSelect, $array);
 
     // je recup le dernier message de la BDD
-    $lastSelectId = $row[0]['id'];
+    $lastSelectId = $rows[0]['id'];
     
     // conversion en JSON pour faciliter le html
-    $json = json_encode($row);
+    $rowsJsonEncoded = json_encode($rows);
     
     // Si le dernier message en base est plus récent je le renvoie au script pour l'afficher
      if ($lastSelectId > $lastInsertId ) {
-        echo $json;
+        echo $rowsJsonEncoded;
     } 
     
 }

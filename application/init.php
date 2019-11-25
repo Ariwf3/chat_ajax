@@ -11,14 +11,34 @@ PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
 $pdo = new PDO($dataSourceName, $databaseLogin, $databasePass, $errmode_utf8);
 
 
-// requête préparée
-function prepareExecute($sqlQuery, array $array = array()) {
+
+/**
+ * redirectTo perform a redirection and exit the current script
+ *
+ * @param string $url
+ *
+ */
+function redirectTo(string $url)
+{
+    header("Location:$url");
+    exit();
+}
+
+/**
+ * prepareExecute
+ *
+ * @param  string $sqlQuery
+ * @param  array $array
+ *
+ */
+function prepareExecute(string $sqlQuery, array $array = array()) 
+{
 
     if ( !empty($array) )
     {
-        foreach( $array as $keys => $values )
+        foreach( $array as $key => $value )
             {
-                $values = htmlspecialchars($values);
+                $array[$key] = htmlspecialchars($value);
             }
     }
     
@@ -27,16 +47,16 @@ function prepareExecute($sqlQuery, array $array = array()) {
     $query->execute($array);
 
     if ($query->rowCount() == 0) {
-        die("Erreur : aucune ligne traitée");
+        throw new PDOException("Erreur aucune ligne traitée");
+        
     }
-
-    return $query;
+    
 }
 
 
 /**
- * queryAll returns an associative array
- *
+ * queryAll returns several associatives arrays of a query result with variable protection
+ *  
  * @param  string $sqlQuery
  * @param  array $array
  *
@@ -59,8 +79,16 @@ function queryAll( string $sqlQuery, array $array = array() ) :array {
     return $query->fetchAll(PDO::FETCH_ASSOC);
 }
 	
-// requête fetch
-function queryOne( $sqlQuery, array $array = array() ) 
+
+/**
+ * queryOne returns one associative array of a quary result with variables protection
+ *
+ * @param  string $sqlQuery
+ * @param  array $array
+ *
+ * @return array
+ */
+function queryOne( string $sqlQuery, array $array = array() ) :array 
     {
         if ( !empty($array) )
         {

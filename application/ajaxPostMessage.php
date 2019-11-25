@@ -6,31 +6,33 @@ require 'init.php';
 if (isset($_POST) && !empty($_POST)) {
 
 
-    $auteur = trim($_POST['auteur']);
+    $author = trim($_POST['author']);
     $message = trim($_POST['message']);
 
 
-    if (!empty($message) && !empty($auteur)) {
+    if (!empty($message) && !empty($author)) {
         
     
-        $sql = 'INSERT INTO messages (auteur, message) VALUES(:auteur, :message)';
-        $array    = [
-            'auteur' => urldecode( htmlspecialchars($auteur) ),
+        $sqlInsert = 'INSERT INTO messages (auteur, message) VALUES(:auteur, :message)';
+        $arrayParams    = [
+            'auteur' => urldecode( htmlspecialchars($author) ),
             'message' =>  urldecode( htmlspecialchars($message) )
         ];
         
+        prepareExecute($sqlInsert,$arrayParams);
 
-        $queryInsertPost = $pdo->prepare($sql);
-        $queryInsertPost->execute($array);
+        /* $queryInsertPost = $pdo->prepare($sqlInsert);
+        $queryInsertPost->execute($array); */
 
         // redirection en cas de désactivation de javascript par l'utilisateur
-        header('location:../index.php');
+        redirectTo("../index.php");
         
         
     } else {
         
         // Redirection avec erreur en cas de désactivation de javascript par l'utilisateur
-        header('location:../index.php?error=1');
+        redirectTo("../index.php?error=1");
+
     }
     
 
