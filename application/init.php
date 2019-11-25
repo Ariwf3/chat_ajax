@@ -33,8 +33,16 @@ function prepareExecute($sqlQuery, array $array = array()) {
     return $query;
 }
 
-// requête fetchAll
-function queryAll( $sqlQuery, array $array = array() ) :array {
+
+/**
+ * queryAll returns an associative array
+ *
+ * @param  string $sqlQuery
+ * @param  array $array
+ *
+ * @return array
+ */
+function queryAll( string $sqlQuery, array $array = array() ) :array {
     
     if ( !empty($array) )
     {

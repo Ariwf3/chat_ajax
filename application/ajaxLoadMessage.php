@@ -14,7 +14,7 @@ if (  !empty($_GET['id']))  {
     // je recup le dernier message de la BDD
     $lastSelectId = $row[0]['id'];
     
-    // conversion en JSON en json pour faciliter le html
+    // conversion en JSON pour faciliter le html
     $json = json_encode($row);
     
     // Si le dernier message en base est plus récent je le renvoie au script pour l'afficher

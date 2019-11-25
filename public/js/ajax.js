@@ -49,12 +49,12 @@ const ariNamespaceAjax = {
         
     },
     /**
-     * Fonction de callback ajax, permet d'afficher les derniers messages enregistrés, formate la réponse et l'ajoute au DOM
+     * Fonction de callback pour getJSON, permet d'afficher les derniers messages enregistrés, formate la réponse et l'ajoute au DOM
      *@property {function} display - contient la fonction de qui servira de retour
-     * @param {JSON} response - La données renvoyées par le serveur
+     * @param {JSON} response - représente Les données renvoyées par le script serveur
      */
-    displayMessage: function (response) {
-   console.log(response)
+    displayMessage: response => {
+    console.log(response)
         if (response != "") {
         
             let message = "";
