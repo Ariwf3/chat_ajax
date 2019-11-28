@@ -16,10 +16,11 @@ const ariNamespaceAjax = {
      * Envoie des requêtes asynchrones ajax post avec les paramètres utilisateurs
      * @property {function} sendMessage
     */
-    sendMessage: () => {
-        $.post(
+    sendMessage: async () => {
+        fetch(
             "application/ajaxPostMessage.php",  
             {
+                method : "POST",
                 author: $author,
                 message: $message
             }, 
