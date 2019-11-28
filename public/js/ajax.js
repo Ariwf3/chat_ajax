@@ -6,8 +6,6 @@ let $author;
 /** @var {string} $auteur - Globale va récupérer l'élément html form' */
 let $form;
 
-// let formData = new FormData(document.getElementById("form"));
-
 
 /**
  *  Représente un namespace qui contient les requêtes ajax
@@ -17,16 +15,13 @@ let $form;
 const ariNamespaceAjax = {
 
     /**
-     * Envoie des requêtes asynchrones ajax post avec les paramètres utilisateurs
+     * Envoie des requêtes asynchrones post avec les paramètres utilisateurs
      * @property {function} sendMessage
     */
     sendMessage: async () => {
 
         try {
-            /* let datas = {
-                author: $author,
-                message: $message
-            }, */
+            
             const formData = new FormData(document.getElementById("form"));
             const initRequest = {
                 method: "POST",
@@ -68,18 +63,12 @@ const ariNamespaceAjax = {
     /**
      * Fonction de callback pour getJSON, permet d'afficher les derniers messages enregistrés, formate la réponse et l'ajoute au DOM
      *@property {function} display - contient la fonction de qui servira de retour
-     * @param {JSON} response - représente Les données renvoyées par le script serveur
+     * @param {JSON} response - Les données renvoyées par le script serveur
      */
     displayMessage: response => {
-    console.log(response)
-        if (response != "") {
-        
-            /* let message = "";
 
-            message += "<p data-id='" + response[0].id + "'>";
-            message += "<span>" + response[0].auteur + " à dit : </span>";
-            message += response[0].message + "</p>"; */
-            
+        if (response != "") {
+         
             let message =
                 `<p data-id='${response[0].id}'>
                     <span>${response[0].auteur} à dit :</span> ${response[0].message}

@@ -2,11 +2,10 @@
 
 require 'init.php';
 
-var_dump($_POST);
 
 if (isset($_POST) && !empty($_POST)) {
 
-    // var_dump($_POST);
+    // nettoyage variables utilisateur
     $author = trim($_POST['author']);
     $message = trim($_POST['message']);
 
@@ -20,19 +19,17 @@ if (isset($_POST) && !empty($_POST)) {
             'message' =>  urldecode( htmlspecialchars($message) )
         ];
         
+        //enregistrement messages en bdd
         prepareExecute($sqlInsert,$arrayParams);
 
-        /* $queryInsertPost = $pdo->prepare($sqlInsert);
-        $queryInsertPost->execute($array); */
-
         // redirection en cas de désactivation de javascript par l'utilisateur
-        // redirectTo("../index.php");
+        redirectTo("../index.php");
         
         
     } else {
-        var_dump($_POST);
+        
         // Redirection avec erreur en cas de désactivation de javascript par l'utilisateur
-        // redirectTo("../index.php?error=1");
+        redirectTo("../index.php?error=1");
 
     }
     

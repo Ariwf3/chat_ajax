@@ -43,6 +43,6 @@ const ariNamespaceEvents = {
     
     }
     
-} // fin namespace ariNamespaceEvents
+} 
 
 

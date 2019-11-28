@@ -21,5 +21,6 @@ if (  !empty($_GET['id']))  {
      if ($lastSelectId > $lastInsertId ) {
         echo $rowsJsonEncoded;
     } 
+
     
 }
