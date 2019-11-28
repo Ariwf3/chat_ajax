@@ -7,8 +7,10 @@ $(function () {
     /** @var {Object} $envoi - Locale contient bouton submit */
     let $send = $("#sendForm");
 
-    // envoi du message en base au click
-    $send.on("click", ariNamespaceEvents.sendMessageOnClick);
+    $form = $("#form");
+
+    // envoi du message en base a la soumission
+    $form.on("submit", ariNamespaceEvents.sendMessageOnClick);
 
     // chargement messages en base
     ariNamespaceAjax.loadMessage();

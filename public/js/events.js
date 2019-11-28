@@ -12,7 +12,7 @@ const ariNamespaceEvents = {
      * @property {function} sendMessageOnClick
      * @param {event} e - représente l'objet event
      */
-    sendMessageOnClick :function (e) {
+    sendMessageOnClick : function (e) {
 
     e.preventDefault();
 
@@ -20,8 +20,8 @@ const ariNamespaceEvents = {
     let $error = $(".error");
 
     //capture du message et auteur au clic avec protection des données utilisateur
-    $message = encodeURIComponent($('#message').val().trim());
-    $author  = encodeURIComponent($('#author').val().trim());   
+    $message =  encodeURIComponent($('#message').val().trim());
+    $author  =  encodeURIComponent($('#author').val().trim());   
 
 
     if ($message != "" && $author != "") {

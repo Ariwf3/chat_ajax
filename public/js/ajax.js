@@ -3,6 +3,10 @@
 let $message;
 /** @var {string} $auteur - Globale va récupérer la valeur de l'auteur */
 let $author;
+/** @var {string} $auteur - Globale va récupérer l'élément html form' */
+let $form;
+
+// let formData = new FormData(document.getElementById("form"));
 
 
 /**
@@ -17,15 +21,27 @@ const ariNamespaceAjax = {
      * @property {function} sendMessage
     */
     sendMessage: async () => {
-        fetch(
-            "application/ajaxPostMessage.php",  
-            {
-                method : "POST",
+
+        try {
+            /* let datas = {
                 author: $author,
                 message: $message
-            }, 
-            "html" 
-        ); // fin traitement ajax
+            }, */
+            const formData = new FormData(document.getElementById("form"));
+            const initRequest = {
+                method: "POST",
+                // headers: { 'Content-Type': 'application/json' },
+                body: formData
+            };
+            const request = new Request("application/ajaxPostMessage.php", initRequest)
+            let response = await fetch(request);
+            if (response.ok === false ) {
+                console.error(`Retour du serveur : ${response.status}`);
+            } 
+        } catch (error) {
+            alert(`Erreur attrapée voir le message suivant : ${error.message}, contacter le gérant du site si le problème persiste`);
+        }
+        
     },
 
     /**
@@ -58,11 +74,16 @@ const ariNamespaceAjax = {
     console.log(response)
         if (response != "") {
         
-            let message = "";
+            /* let message = "";
 
             message += "<p data-id='" + response[0].id + "'>";
             message += "<span>" + response[0].auteur + " à dit : </span>";
-            message += response[0].message + "</p>" ;
+            message += response[0].message + "</p>"; */
+            
+            let message =
+                `<p data-id='${response[0].id}'>
+                    <span>${response[0].auteur} à dit :</span> ${response[0].message}
+                </p>`;
             
             $("#messages").prepend(message);
 
